@@ -41,20 +41,23 @@ bucket_results %>%
   summarize(constraint = mean(constraint)) %>%
   filter(category != 0) %>%
   ggplot(aes(category, constraint)) +
-  geom_col(fill = "#0f4c81", color = "#0f4c81") +
+  geom_col(fill = "#900c3f", color = "#900c3f") +
   scale_y_continuous(limits = c(0, 1), breaks = scales::pretty_breaks(8)) +
   scale_x_continuous(breaks = 1:10) +
-  theme_bw(base_size = 17) +
+  theme_bw(base_size = 18) +
   theme(
     panel.grid.minor = element_blank(),
     legend.position = "top"
   ) +
   labs(
-    x = "Bucket",
+    x = "Constraint Bin",
     y = "Constraint Score"
   )
 
 ggsave("thesis/avgconstraint.pdf")
+
+
+
 
 facilitations <- bucket_results %>%
   rename(bucket = "category") %>%
