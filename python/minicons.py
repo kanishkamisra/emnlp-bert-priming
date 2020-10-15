@@ -28,7 +28,7 @@ def get_batch(train_data, batch_size, shuffle = False):
         batch = train_data[sindex:]
         yield batch
 
-def batch_encode(sentences, device = device):
+def batch_encode(sentences, tokenizer, device):
     encoded = tokenizer.batch_encode_plus(sentences, add_special_tokens = False, pad_to_max_length=True)
     token_ids = torch.tensor(encoded['input_ids'])
     token_ids = token_ids.to(device)

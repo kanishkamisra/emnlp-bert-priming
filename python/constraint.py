@@ -1,3 +1,10 @@
+'''
+Computes the constraint scores of the cloze-stimuli in terms of the 
+
+(1) probability of the most expected word.
+(2) entropy of the output distribution.
+'''
+
 import torch
 import csv
 import argparse
@@ -40,9 +47,9 @@ with open("../data/constraints_{}.csv".format(model_type), "w") as f:
     writer = csv.writer(f)
     writer.writerow(["target", "related", "unrelated", "relation", "context", "constraint", "entropy"])
     for batch in tqdm(contexts_dl):
-        current_batch_size = len(batch)
         target, related, unrelated, relation, context, mask = batch
-        input_ids, attentions = minicons.batch_encode(context)
+        current_batch_size = len(target)
+        input_ids, attentions = minicons.batch_encode(context, tokenizer, device)
         output = model(input_ids, attentions)
         entropy = minicons.calculate_entropy(output[0], mask)
         constraint = minicons.batch_highest(output, current_batch_size, mask)
