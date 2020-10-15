@@ -97,7 +97,7 @@ neutral_f <- facilitations %>%
 p_facilitations <- facilitations %>%
   filter(bucket != 0) %>%
   ggplot(aes(bucket/10, facilitation, color = context_type, fill = context_type)) +
-  geom_point(size = 2) +
+  geom_point(size = 3) +
   geom_point(data = neutral_f, aes(bucket/10, facilitation), shape = 17, size = 5, show.legend = FALSE) +
   geom_line(size = 0.9) +
   # geom_errorbar(aes(ymin = low_f, ymax = high_f), width = 0.05) +
@@ -114,9 +114,10 @@ p_facilitations <- facilitations %>%
     fill = "Scenario"
   ) +
   ggtitle("(A)") +
-  theme_gray(base_size = 20) +
+  theme_bw(base_size = 20) +
   theme(
     legend.position = "top",
+    legend.text = element_text(size = 20),
     axis.title.x = element_blank(),
     plot.title = element_text(vjust = -7, hjust = -0.1),
     plot.margin = margin(t = -10),
@@ -183,9 +184,10 @@ p_facilitated <- facilitations %>%
     color = "Scenario"
   ) +
   ggtitle("(B)") +
-  theme_gray(base_size = 20) +
+  theme_bw(base_size = 20) +
   theme(
     legend.position = "none",
+    legend.text = element_text(size = 20),
     plot.title = element_text(vjust = -3, hjust = -0.1),
     plot.margin = margin(t = -1),
     axis.title.y = element_text(size = 17),
@@ -199,9 +201,9 @@ ggsave("paper/bins_vs_primed_instances.pdf")
 ggsave("paper/bins_vs_primed_instances.png")
 
 
-p_facilitations / p_facilitated
+overall <- p_facilitations / p_facilitated
 
-ggsave("paper/overallfacilitations2.pdf")
+ggsave("paper/overallfacilitations2_new.pdf", overall, width = 9.84, height = 9.34, device = cairo_pdf)
 
 relations <- bucket_results %>%
   inner_join(
@@ -246,8 +248,8 @@ relation_facilitation %>%
   filter(bucket != 0) %>%
   ggplot(aes(bucket/10, f, color = context_type, fill = context_type)) +
   geom_point(size = 2) +
-  geom_hline(data = neutral_relation_f, aes(yintercept = f, color = context_type), linetype = 2, size = 1) +
-  # geom_point(data = neutral_relation_f, size = 3, shape = 17, show.legend = FALSE) +
+  # geom_hline(data = neutral_relation_f, aes(yintercept = f, color = context_type), linetype = 2, size = 1) +
+  geom_point(data = neutral_relation_f, size = 3, shape = 17, show.legend = FALSE) +
   geom_line()+
   geom_ribbon(aes(ymin = low, ymax = high), alpha = 0.2, color = NA) +
   facet_wrap(~relation, nrow = 2) +
@@ -255,12 +257,13 @@ relation_facilitation %>%
   # scale_y_continuous(limits = c(0, 3)) +
   scale_color_manual(values = c("#005082", "#f2a365")) + 
   scale_fill_manual(values = c("#005082", "#f2a365")) +
-  theme_gray(base_size = 14) +
+  theme_bw(base_size = 14) +
   theme(
     legend.position = "top",
     # strip.text = element_text(face = "bold"),
     # axis.title = element_text(face = "bold"),
     # legend.title = element_text(face = "bold"),
+    legend.text = element_text(size = 14),
     # plot.title = element_text(face = "bold"),
     panel.grid.minor.y=element_blank()
   ) +
@@ -271,7 +274,7 @@ relation_facilitation %>%
     fill = "Prime Context"
   )
 
-ggsave("paper/relationpriming2.pdf", width = 13.4, height = 5.9)
+ggsave("paper/relationpriming2_new.pdf", width = 13.4, height = 5.9, device = cairo_pdf)
 ggsave("paper/relationpriming.png", height = 5.9, width = 13.4)
 
 
@@ -470,7 +473,9 @@ bucket_results %>%
   geom_point(size = 3.5) +
   geom_line(size = 1) +
   geom_hline(yintercept = 0.5, linetype = 2) +
-  annotate("text", x = 0.25, y = 0.25, label = "Majority of Related \n Primes are Distractors", color = "black", size = 5) +
+  # annotate("text", x = 0.25, y = 0.25, label = "Majority of Related \n Primes are Distractors", color = "black", size = 5) +
+  annotate("text", x = 0.25, y = 0.25, label = "Majority of Related\nWords are Distractors", color = "black", size = 5) +
+  annotate("text", x = 0.80, y = 0.875, label = "Majority of Related\nWords are Primes", color = "black", size = 5) +
   # geom_errorbar(aes(ymin = low_f, ymax = high_f)) +
   # geom_ribbon(aes(fill = model, ymin = low_f, ymax = high_f), alpha = 0.2) +
   # scale_x_continuous(breaks = seq(0, 1, by = .1), limits = c(0, 1.0)) +
@@ -495,19 +500,19 @@ bucket_results %>%
     color = "Scenario",
     linetype = "Criterion"
   ) +
-  theme_gray(base_size = 15) +
+  theme_bw(base_size = 15) +
   theme(
     legend.position = "top",
     # legend.position = c(0, 1),
     # legend.justification = c(-1, 1),
     axis.text = element_text(size = 17),
     strip.text = element_text(size = 15),
-    legend.text = element_text(size = 13),
+    legend.text = element_text(size = 14),
     legend.title = element_text(size = 14)
     # panel.grid.minor.x =element_blank()
   )
 
-ggsave("paper/postdistractor2.pdf")
+ggsave("paper/postdistractor2_new.pdf", width = 6.6, height = 10, device = cairo_pdf)
 
 
 by_relation <- bucket_results %>%

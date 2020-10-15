@@ -1,0 +1,21 @@
+model,relation,n,statistic_sentence,statistic_word,fixed_effect_sentence,fixed_effect_word
+bert-base-uncased,Synonym,418,1172.58,720.12,-3.01,-1.97
+bert-base-uncased,Forward Phrasal Associate,263,374.75,242.3,-1.84,-1.24
+bert-base-uncased,Category,164,358.1,251.01,-3.33,-2.18
+bert-base-uncased,Antonym,153,428.46,354.35,-4.05,-2.69
+bert-base-uncased,Backward Phrasal Associate,151,216.22,126.5,-1.92,-1.2
+bert-base-uncased,Supraordinate,131,223.14,138.85,-2.52,-1.68
+bert-base-uncased,Script,124,225.85,133.26,-2.59,-1.67
+bert-base-uncased,Perceptual Property,90,164.92,93.95,-2.08,-1.35
+bert-base-uncased,Functional Property,73,144.26,111.27,-2.49,-1.65
+bert-base-uncased,Instrument,35,69.28,36.38,-2.41,-1.39
+bert-large-uncased,Synonym,418,1147.61,987.75,-3.52,-3.44
+bert-large-uncased,Forward Phrasal Associate,263,399.17,306.24,-2.06,-1.98
+bert-large-uncased,Category,164,396.64,326.75,-4.08,-3.54
+bert-large-uncased,Antonym,153,416,365.34,-4.43,-3.74
+bert-large-uncased,Backward Phrasal Associate,151,243.55,202.71,-2.22,-2.17
+bert-large-uncased,Supraordinate,131,220.71,220.05,-3.05,-3.13
+bert-large-uncased,Script,124,227.21,195.6,-2.96,-2.86
+bert-large-uncased,Perceptual Property,90,145.26,129.46,-2.33,-2.33
+bert-large-uncased,Functional Property,73,117.63,138.61,-2.65,-2.87
+bert-large-uncased,Instrument,35,74.37,67.8,-2.77,-2.55

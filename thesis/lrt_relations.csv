@@ -1,0 +1,41 @@
+model,dataset,relation,n,statistic,df,p.value,fixed_effect
+bert-base-uncased,sentence,Synonym,418,1172.58,1,5.558067111927844e-257,-3.01
+bert-base-uncased,sentence,Forward Phrasal Associate,263,374.75,1,1.7297487893616346e-83,-1.84
+bert-base-uncased,sentence,Category,164,358.1,1,7.314797542448598e-80,-3.33
+bert-base-uncased,sentence,Antonym,153,428.46,1,3.5111313685214424e-95,-4.05
+bert-base-uncased,sentence,Backward Phrasal Associate,151,216.22,1,6.025020911237848e-49,-1.92
+bert-base-uncased,sentence,Supraordinate,131,223.14,1,1.8659264204207642e-50,-2.52
+bert-base-uncased,sentence,Script,124,225.85,1,4.7880508039092237e-51,-2.59
+bert-base-uncased,sentence,Perceptual Property,90,164.92,1,9.503718102845603e-38,-2.08
+bert-base-uncased,sentence,Functional Property,73,144.26,1,3.11297447704988e-33,-2.49
+bert-base-uncased,sentence,Instrument,35,69.28,1,8.5290610303634e-17,-2.41
+bert-base-uncased,word,Synonym,418,720.12,1,1.260236844760758e-158,-1.97
+bert-base-uncased,word,Forward Phrasal Associate,263,242.3,1,1.2394200345127112e-54,-1.24
+bert-base-uncased,word,Category,164,251.01,1,1.5674431217614283e-56,-2.18
+bert-base-uncased,word,Antonym,153,354.35,1,4.777377088260809e-79,-2.69
+bert-base-uncased,word,Backward Phrasal Associate,151,126.5,1,2.3874945965010946e-29,-1.2
+bert-base-uncased,word,Supraordinate,131,138.85,1,4.7507137293813873e-32,-1.68
+bert-base-uncased,word,Script,124,133.26,1,7.929209812349993e-31,-1.67
+bert-base-uncased,word,Perceptual Property,90,93.95,1,3.2346590441591717e-22,-1.35
+bert-base-uncased,word,Functional Property,73,111.27,1,5.167338716393859e-26,-1.65
+bert-base-uncased,word,Instrument,35,36.38,1,1.6209075573841365e-9,-1.39
+bert-large-uncased,sentence,Synonym,418,1147.61,1,1.4870032372991812e-251,-3.52
+bert-large-uncased,sentence,Forward Phrasal Associate,263,399.17,1,8.35575772023814e-89,-2.06
+bert-large-uncased,sentence,Category,164,396.64,1,2.969681902202234e-88,-4.08
+bert-large-uncased,sentence,Antonym,153,416,1,1.8088492951792474e-92,-4.43
+bert-large-uncased,sentence,Backward Phrasal Associate,151,243.55,1,6.602240463642875e-55,-2.22
+bert-large-uncased,sentence,Supraordinate,131,220.71,1,6.341528827898708e-50,-3.05
+bert-large-uncased,sentence,Script,124,227.21,1,2.420047887137284e-51,-2.96
+bert-large-uncased,sentence,Perceptual Property,90,145.26,1,1.8813266796611046e-33,-2.33
+bert-large-uncased,sentence,Functional Property,73,117.63,1,2.0842242801363165e-27,-2.65
+bert-large-uncased,sentence,Instrument,35,74.37,1,6.4666995334355836e-18,-2.77
+bert-large-uncased,word,Synonym,418,987.75,1,8.25723932957306e-217,-3.44
+bert-large-uncased,word,Forward Phrasal Associate,263,306.24,1,1.4381804214343005e-68,-1.98
+bert-large-uncased,word,Category,164,326.75,1,4.9165635562175e-73,-3.54
+bert-large-uncased,word,Antonym,153,365.34,1,1.938181615012539e-81,-3.74
+bert-large-uncased,word,Backward Phrasal Associate,151,202.71,1,5.352567338344711e-46,-2.17
+bert-large-uncased,word,Supraordinate,131,220.05,1,8.827531849405482e-50,-3.13
+bert-large-uncased,word,Script,124,195.6,1,1.901835946332008e-44,-2.86
+bert-large-uncased,word,Perceptual Property,90,129.46,1,5.369207707739101e-30,-2.33
+bert-large-uncased,word,Functional Property,73,138.61,1,5.350082261803929e-32,-2.87
+bert-large-uncased,word,Instrument,35,67.8,1,1.8070106604189464e-16,-2.55

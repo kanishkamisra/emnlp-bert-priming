@@ -1,0 +1,11 @@
+relation,n,f_sentence,f_word,facilitated_sentence,facilitated_word
+Synonym,418,5.62$\pm$0.23,4.89$\pm$0.24,94.500%,93.060%
+Forward Phrasal Associate,263,2.97$\pm$0.27,2.61$\pm$0.26,84.600%,81.750%
+Category,164,6.9$\pm$0.41,5.46$\pm$0.4,96.650%,95.120%
+Antonym,153,8.12$\pm$0.4,5.82$\pm$0.39,97.710%,95.750%
+Backward Phrasal Associate,151,3.4$\pm$0.38,2.99$\pm$0.36,87.420%,84.110%
+Supraordinate,131,4.81$\pm$0.45,4.3$\pm$0.45,90.460%,90.840%
+Script,124,4.51$\pm$0.45,4.02$\pm$0.47,88.710%,87.900%
+Perceptual Property,90,3.74$\pm$0.5,3.15$\pm$0.52,88.330%,82.780%
+Functional Property,73,3.75$\pm$0.53,3.79$\pm$0.54,88.360%,89.040%
+Instrument,35,4$\pm$0.8,3.26$\pm$0.77,87.140%,84.290%

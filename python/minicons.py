@@ -28,6 +28,20 @@ def get_batch(train_data, batch_size, shuffle = False):
         batch = train_data[sindex:]
         yield batch
 
+def batch_encode(sentences, device = device):
+    encoded = tokenizer.batch_encode_plus(sentences, add_special_tokens = False, pad_to_max_length=True)
+    token_ids = torch.tensor(encoded['input_ids'])
+    token_ids = token_ids.to(device)
+    attention_masks = torch.tensor(encoded['attention_mask'])
+    attention_masks = attention_masks.to(device)
+    return token_ids, attention_masks
+
+def calculate_entropy(logits, masks):
+    size = logits.shape[0]
+    probs = logits[torch.arange(size), torch.tensor(masks)].softmax(dim = 1)
+    entropy = (-probs * probs.log2()).sum(dim = 1)
+    return entropy.tolist()
+
 def metrics(scores: torch.Tensor, indices: torch.Tensor):
     probs = F.softmax(scores, dim = 1)
     shape = scores.shape
