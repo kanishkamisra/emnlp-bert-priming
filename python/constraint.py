@@ -18,6 +18,8 @@ from transformers import AutoTokenizer, AutoModelForMaskedLM
 torch.manual_seed(1234)
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--infile", type = str)
+parser.add_argument("--outfile", type = str)
 parser.add_argument("--model", default = 'bert-base-uncased', type = str)
 # parser.add_argument("--device", default = "cpu", type = str)
 args = parser.parse_args()
@@ -34,7 +36,7 @@ model.eval()
 print("Model Loaded!\n")
 
 contexts = []
-with open("../data/raw_stimuli.csv", "r") as f:
+with open(args.infile, "r") as f:
     next(f)
     reader = csv.reader(f)
     for line in reader:
@@ -43,7 +45,7 @@ with open("../data/raw_stimuli.csv", "r") as f:
 
 contexts_dl = dataloader.DataLoader(contexts, batch_size = 30)
 
-with open("../data/constraints_{}.csv".format(model_type), "w") as f:
+with open(args.outfile, "w") as f:
     writer = csv.writer(f)
     writer.writerow(["target", "related", "unrelated", "relation", "context", "constraint", "entropy"])
     for batch in tqdm(contexts_dl):
