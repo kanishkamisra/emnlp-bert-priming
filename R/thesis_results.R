@@ -553,14 +553,3 @@ lrt_relations %>%
   select(-df, -p.value) %>%
   pivot_wider(names_from = dataset, values_from = c(statistic, fixed_effect)) %>%
   write_csv("thesis/lrt_relations_wider.csv")
-
-
-bucket_results %>%
-  mutate(
-    strong = related_rank == 1
-  ) %>%
-  group_by(model, dataset, category) %>%
-  summarize(
-    most_expected = mean(strong & )
-  )
-  
