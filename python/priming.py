@@ -40,7 +40,7 @@ def prime(sentence, prime, mode):
         prefix = f"[CLS] {prime}."
     return sentence.replace("[CLS]", prefix)
 
-def batch_metrics(batch_context, word, model, tokenizer, mask, batch_size, device = device):
+def batch_metrics(batch_context, word, model, tokenizer, mask, batch_size, device = device, best = True):
 
     # encode
     ids, attn_masks = minicons.batch_encode(batch_context, tokenizer, device)
@@ -56,15 +56,16 @@ def batch_metrics(batch_context, word, model, tokenizer, mask, batch_size, devic
     idx = idx.to(device)
 
     distribution = torch.softmax(logits[torch.arange(batch_size), torch.tensor(mask)], 1)
-    target_prob, target_rank = minicons.metrics(distribution, idx)
+    word_prob, word_rank = minicons.metrics(distribution, idx)
 
-    top_k = torch.topk(distribution, 1)
-    most_expected = tokenizer.convert_ids_to_tokens(top_k[1])
-    top1_prob = top_k[0].flatten().tolist()
+    if best:
+        top_k = torch.topk(distribution, 1)
+        most_expected = tokenizer.convert_ids_to_tokens(top_k[1])
+        top1_prob = top_k[0].flatten().tolist()
+        return (word_prob, word_rank, most_expected, top1_prob)
 
-    # extract P(x = T), rank(t)
-    # extract argmax(P(x)), max(P(x))
-    return (target_prob, target_rank, most_expected, top1_prob)
+    else:
+        return (word_prob, word_rank)
 
 # results_file = "data/priming_results/priming_{}_{}.csv".format(model_type, mode)
 
@@ -100,7 +101,11 @@ for batch in tqdm(stimuli_dl):
 
     isolated_metrics, related_metrics, unrelated_metrics = [batch_metrics(x, target, model, tokenizer, mask, current_batch_size) for x, mask in [(context, isolated_mask), (related_context, related_mask), (unrelated_context, unrelated_mask)]]
 
-    result = (target, related, unrelated, relation, context, related_context, unrelated_context) + isolated_metrics + related_metrics + unrelated_metrics
+    # Expectations for related and unrelated words in 
+
+    rp_metrics, up_metrics = [batch_metrics(context, x, model, tokenizer, isolated_mask, current_batch_size, best = False) for x in [related, unrelated]]
+
+    result = (target, related, unrelated, relation, context, related_context, unrelated_context) + isolated_metrics + related_metrics + unrelated_metrics + rp_metrics + up_metrics
 
     results.extend([x for x in list(zip(*result))])
 
@@ -109,6 +114,9 @@ with open(results_file, "w") as f:
     column_names = ["target", "related", "unrelated", "relation", "context", "related_context", "unrelated_context"]
 
     column_names.extend([f"{x}_{y}" for x in ["isolated", "related", "unrelated"] for y in ["probability", "rank", "argmax", "maxprob"]])
+
+    column_names.extend([f"{x}_{y}" for x in ["rp", "up"] for y in ['probability', 'rank']])
+
     writer.writerow(column_names)
 
     writer.writerows(results)
