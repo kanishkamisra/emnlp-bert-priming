@@ -5,8 +5,8 @@ declare -a modes=("sentence" "word")
 
 for model in ${models[@]}
 do
-    echo "Computing constraint scores and entropies for ${model}"
-    python python/constraint.py --model ${model} --infile data/raw_stimuli.csv --outfile data/constraints_${model}.csv
+    # echo "Computing constraint scores and entropies for ${model}"
+    # python python/constraint.py --model ${model} --infile data/raw_stimuli.csv --outfile data/constraints_${model}.csv
 
     for mode in ${modes[@]}
     do

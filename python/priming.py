@@ -103,9 +103,10 @@ for batch in tqdm(stimuli_dl):
 
     # Expectations for related and unrelated words in 
 
-    rp_metrics, up_metrics = [batch_metrics(context, x, model, tokenizer, isolated_mask, current_batch_size, best = False) for x in [related, unrelated]]
+    # rp_metrics, up_metrics = [batch_metrics(context, x, model, tokenizer, isolated_mask, current_batch_size, best = False) for x in [related, unrelated]]
+    rp_isolated_metrics, rp_related_metrics = [batch_metrics(x, related, model, tokenizer, mask, current_batch_size, best = False) for x, mask in [(context, isolated_mask), (related_context, related_mask)]]
 
-    result = (target, related, unrelated, relation, context, related_context, unrelated_context) + isolated_metrics + related_metrics + unrelated_metrics + rp_metrics + up_metrics
+    result = (target, related, unrelated, relation, context, related_context, unrelated_context) + isolated_metrics + related_metrics + unrelated_metrics + rp_isolated_metrics + rp_related_metrics
 
     results.extend([x for x in list(zip(*result))])
 
@@ -115,7 +116,7 @@ with open(results_file, "w") as f:
 
     column_names.extend([f"{x}_{y}" for x in ["isolated", "related", "unrelated"] for y in ["probability", "rank", "argmax", "maxprob"]])
 
-    column_names.extend([f"{x}_{y}" for x in ["rp", "up"] for y in ['probability', 'rank']])
+    column_names.extend([f"{x}_{y}" for x in ["rp_isolated", "rp_related"] for y in ['probability', 'rank']])
 
     writer.writerow(column_names)
 
